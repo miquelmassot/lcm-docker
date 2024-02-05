@@ -11,7 +11,8 @@
     "--cap-add=SYS_PTRACE",
     "--security-opt=seccomp:unconfined",
     "--security-opt=apparmor:unconfined",
-    "--ipc=host"
+    "--ipc=host",
+    "-e USER=$(whoami) -h $HOSTNAME --user $(id -u):$(id -g)"
   ],
 
   "customizations": {
@@ -21,11 +22,11 @@
         "ms-vscode.cmake-tools",
         "ms-python.vscode-pylance",
         "ms-python.python",
-				"ms-vscode.cpptools",
-				"redhat.vscode-yaml",
+        "ms-vscode.cpptools",
+        "redhat.vscode-yaml",
         "twxs.cmake",
-				"yzhang.markdown-all-in-one",
-				"zachflower.uncrustify"
+        "yzhang.markdown-all-in-one",
+        "zachflower.uncrustify"
       ]
     }
   },

@@ -1,4 +1,7 @@
-FROM debian:bookworm-slim AS runtime-base
+FROM ubuntu:24.04 AS runtime-base
+
+# User ubuntu as default has UID 1000. Change it to 1111
+RUN usermod -u 1111 ubuntu && groupmod -g 1111 ubuntu
 
 # Set arguments
 ARG USERNAME=user
@@ -39,8 +42,8 @@ RUN echo 'net.core.rmem_default=10485760' >> /etc/sysctl.conf
 # Remove timezone warnings
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# Set locales
-RUN locale-gen en_UK.UTF-8 && dpkg-reconfigure locales
+# Set locales en_UK.UTF-8
+RUN locale-gen en_GB.UTF-8 && update-locale LANG=en_GB.UTF-8
 
 #FROM runtime-base AS build
 ENV LCM_VERSION '1.5.0'
